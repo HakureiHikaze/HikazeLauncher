@@ -29,7 +29,7 @@ namespace Experiment
             Playerinfo player1 = new Playerinfo();
             player1.SetPlayerName("Hikaze");
             player1.RegenerateUUID();
-            string ext = "-XX:-UseAdaptiveSizePolicy -XX:-OmitStackTraceInFastThrow -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump \"-Dminecraft.launcher.brand=Hello Minecraft! Launcher\" -Dminecraft.launcher.version=2.7.9.55";
+            string ext = "-XX:-UseAdaptiveSizePolicy -XX:-OmitStackTraceInFastThrow -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true ";
             string a = ParaGen01.CombineParaments(player1, "", "D:\\mc", "1.12.2-OptiFine_HD_U_E3", ext, 4096, 2048, false);
             Console.WriteLine(a);
             Process p = new Process();
