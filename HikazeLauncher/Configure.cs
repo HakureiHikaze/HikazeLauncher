@@ -21,8 +21,17 @@ namespace HikazeLauncher
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void SaveAndQuit(object sender, EventArgs e)
         {
+            WriteConfigToJson();
+            
+            while (this.Opacity >0)
+            {
+                this.Refresh();
+                this.Opacity -= 0.05;
+                System.Threading.Thread.Sleep(3);
+            }
+            
             Close();
         }
 
@@ -48,10 +57,16 @@ namespace HikazeLauncher
 
         private void FrmConfigure_Load(object sender, EventArgs e)
         {
-            JsonObj_jsir = new JObject();
-            Settings = File.ReadAllText(@".\HikazeLauncher\configure.json");
-            JsonObj_jsir = (JObject)JsonConvert.DeserializeObject(Settings);
-            this.txtJavaPath.Text = JsonObj_jsir["JavaPath"].ToString();
+            LoadConfigFromJson();
+            
+            
+            this.Opacity = 0;
+            while (this.Opacity < 0.85)
+            {
+                this.Refresh();
+                this.Opacity += 0.05;
+                System.Threading.Thread.Sleep(3);
+            }
         }
 
         Point mouseOff;
@@ -79,6 +94,35 @@ namespace HikazeLauncher
             {
                 leftFlag = false;
             }
+        }
+
+        private void BtnAuto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label4_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void WriteConfigToJson()
+        {
+            JsonObj_jsir["JavaPath"] = txtJavaPath.Text;
+            JsonObj_jsir["ExtraMCPara"] = textBox3.Text;
+            JsonObj_jsir["ExtraJVMPara"] = textBox4.Text;
+            JsonObj_jsir["MinMem"] = Convert.ToInt32(textBox1.Text);
+            JsonObj_jsir["MaxMem"] = Convert.ToInt32(textBox2.Text);
+            File.WriteAllText(@".\HikazeLauncher\configure.json", JsonObj_jsir.ToString(Newtonsoft.Json.Formatting.Indented, null));
+        }
+        private void LoadConfigFromJson()
+        {
+            Settings = File.ReadAllText(@".\HikazeLauncher\configure.json");
+            JsonObj_jsir = (JObject)JsonConvert.DeserializeObject(Settings);
+            txtJavaPath.Text = JsonObj_jsir["JavaPath"].ToString();
+            textBox3.Text = JsonObj_jsir["ExtraMCPara"].ToString();
+            textBox4.Text = JsonObj_jsir["ExtraJVMPara"].ToString();
+            textBox1.Text = JsonObj_jsir["MinMem"].ToString();
+            textBox2.Text = JsonObj_jsir["MaxMem"].ToString();
         }
     }
 }

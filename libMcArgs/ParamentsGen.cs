@@ -18,7 +18,6 @@ namespace libMcArgs
         /// 连接游戏JVM和mc参数
         /// </summary>
         /// <param name="player">玩家信息,Playerinfo类</param>
-        /// <param name="JavaPath">Java路径</param>
         /// <param name="GameRoot">游戏根路径(.minecraft的所在目录)</param>
         /// <param name="GameVersion">游戏版本，存储version内的文件夹全称的string</param>
         /// <param name="ExtraParaments">额外的JVM参数</param>
@@ -28,7 +27,6 @@ namespace libMcArgs
         /// <returns>返回连接好的游戏参数</returns>
         public string CombineParaments(
             Playerinfo player,
-            string JavaPath,
             string GameRoot,
             string GameVersion,
             string ExtraParaments,
