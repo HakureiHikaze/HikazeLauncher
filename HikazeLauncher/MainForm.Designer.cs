@@ -31,6 +31,7 @@
             this.btnLaunch = new System.Windows.Forms.Button();
             this.btnConfigure = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLaunch
@@ -55,26 +56,40 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(679, 278);
+            this.label1.Size = new System.Drawing.Size(99, 30);
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(663, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 30);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "x";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 366);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnConfigure);
             this.Controls.Add(this.btnLaunch);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "HikazeLauncher";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Frm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Frm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Frm_MouseUp);
             this.ResumeLayout(false);
 
         }
@@ -84,6 +99,7 @@
         private System.Windows.Forms.Button btnLaunch;
         private System.Windows.Forms.Button btnConfigure;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

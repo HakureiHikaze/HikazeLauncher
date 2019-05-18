@@ -34,6 +34,7 @@ namespace HikazeLauncher
             Player_van.RegenerateUUID();
             string ExtraPara_zhy = "-XX:-UseAdaptiveSizePolicy -XX:-OmitStackTraceInFastThrow -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump";
             string MainPara_hln = ParaGen_ryu.CombineParaments(Player_van, "", "D:\\mc", "1.12.2-OptiFine_HD_U_E3", ExtraPara_zhy, 4096, 2048, false);
+            File.WriteAllText(@".\HikazeLauncher\Last Parameters.log", configure_ljc.JavaPath+" "+MainPara_hln);
             Process Process_xb = new Process();
             ProcessStartInfo ProcessStart_hhh = new ProcessStartInfo(configure_ljc.JavaPath+@"\bin\javaw.exe", MainPara_hln);
             Process_xb.StartInfo = ProcessStart_hhh;
@@ -61,7 +62,7 @@ namespace HikazeLauncher
             if (!File.Exists(@".\HikazeLauncher\configure.json"))
             {
                 using (File.Create(@".\HikazeLauncher\configure.json")) { };
-                configure_wyy.JavaPath = Environment.GetEnvironmentVariable("JAVA_HOME");
+                configure_wyy.JavaPath = Environment.GetEnvironmentVariable("JAVA_HOME")+@"\bin\javaw.exe";
                 configure_wyy.MaxMem = 1024;
                 configure_wyy.MinMem = 1024;
                 configure_wyy.ExtraPara = "-XX:-UseAdaptiveSizePolicy -XX:-OmitStackTraceInFastThrow -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump";
@@ -81,6 +82,37 @@ namespace HikazeLauncher
             configure_ljc.MaxMem = Convert.ToInt32(JsonObj_zsc["MaxMem"].ToString());
             configure_ljc.MinMem = Convert.ToInt32(JsonObj_zsc["MinMem"].ToString());
             return;
+        }
+        Point mouseOff;
+        bool leftFlag = false;
+        private void Frm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                mouseOff = new Point(-e.X, -e.Y);
+                leftFlag = true;
+            }
+        }
+        private void Frm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (leftFlag)
+            {
+                Point mouseSet = Control.MousePosition;
+                mouseSet.Offset(mouseOff.X, mouseOff.Y);
+                this.Location = mouseSet;
+            }
+        }
+        private void Frm_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (leftFlag)
+            {
+                leftFlag = false;
+            }
+        }
+
+        private void Button1_Click_1(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -33,7 +33,5 @@ namespace HikazeLauncher
             ReturnJson.Add("MinMem", MinMem);
             return ReturnJson;
         }
-
     }
-
 }
